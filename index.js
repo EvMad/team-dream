@@ -1,12 +1,181 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const employee = require("./lib/employee");
+const Employee = require("./lib/employee");
+const Manager = require("./lib/manager");
+const util = require("util");
+const people = [];
 
 let init = () => {
     console.log("Welcome manager, to the team builder!");
 
+    
 
+    inquirer.prompt([{
+        type: 'input',
+        name: 'firstName',
+        message: 'What is your first name?',
+
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'What is your employee ID number?',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email address?',
+    },
+    {
+        type: 'list',
+        name: 'role',
+        message: 'Choose a job title:',
+        choices: ['Manager', 'Engineer', 'Intern'],
+    },
+    {
+        type: 'input',
+        name: 'git',
+        message: 'What is your GitHub user name?',
+    },
+    {
+        type: 'input',
+        name: 'engineer',
+        message: 'What is the first name of your engineer?',
+    },
+    {
+        type: 'input',
+        name: 'engGit',
+        message: 'What is the GitHub user name of your engineer?',
+    },
+    {
+        type: 'input',
+        name: 'engEmail',
+        message: 'What is the email for your engineer?', 
+    },
+    {
+        type: 'input',
+        name: 'engId',
+        message: 'What is the ID number for your engineer?',
+    },
+  
+])
 }
+
+.then(() => const writeFileAsync = util.promisify(fs.writeFile);
+.then(() => const generateCard = (answers) => {
+    console.log(answers);
+    return`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Team Card Generator</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      </head>
+    
+      <body>
+          <div class="container-md">
+              <div class="row">
+                  <h1 class="text-white text-center bg-danger">My Team</h1>
+              </div>
+              <div class="row justify-content-center">
+                <div class="card col-3">
+                    <div class="card-header bg-primary text-white">
+                      ${answers.firstName}
+                      <h5 class="card-title bg-primary text-white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cup-fill" viewBox="0 0 16 16">
+                        <path d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8z"/>
+                      </svg>   Manager</h5>
+                    </div>
+                    <div class="card-body bg-light">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID:${answers.id}</li>
+                            <li class="list-group-item">Email:<a href="#">${answers.email}</a></li>
+                            <li class="list-group-item">Office Number:${answers.office}</li>
+                        </ul>
+                      
+                    </div>
+                  </div>
+    
+                  <div class="card col-3">
+                    <div class="card-header bg-primary text-white">
+                      ${answers.engName}
+                      <h5 class="card-title bg-primary text-white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
+                        <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                      </svg>   Engineer</h5>
+                    </div>
+                    <div class="card-body bg-light">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID:${answers.engId}</li>
+                            <li class="list-group-item">Email:<a href="#">${answers.engEmail}</a></li>
+                            <li class="list-group-item justify-content-center"><a href="https://github.com/${answers.engGit}" class="btn btn-primary">GitHub</a></li>
+                        </ul>
+                      </div>
+                  </div>
+    
+                  <div class="card col-3">
+                    <div class="card-header bg-primary text-white">
+                      Name
+                      <h5 class="card-title bg-primary text-white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sunglasses" viewBox="0 0 16 16">
+                        <path d="M3 5a2 2 0 0 0-2 2v.5H.5a.5.5 0 0 0 0 1H1V9a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3 1 1 0 1 1 2 0 3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-.5h.5a.5.5 0 0 0 0-1H15V7a2 2 0 0 0-2-2h-2a2 2 0 0 0-1.888 1.338A1.99 1.99 0 0 0 8 6a1.99 1.99 0 0 0-1.112.338A2 2 0 0 0 5 5H3zm0 1h.941c.264 0 .348.356.112.474l-.457.228a2 2 0 0 0-.894.894l-.228.457C2.356 8.289 2 8.205 2 7.94V7a1 1 0 0 1 1-1z"/>
+                      </svg>   Intern</h5>
+                    </div>
+                    <div class="card-body bg-light">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID:</li>
+                            <li class="list-group-item">Email:<a href="#"></a></li>
+                            <li class="list-group-item justify-content-center"><a href="#" class="btn btn-primary">GitHub</a></li>
+                        </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </body>
+      </html>`;)
+    .then((answers) => writeFileAsync("./dist/team.html", generateCard(answers)))
+    .then(() => console.log('Succesfully wrote to team.html'))
+    .catch((err) => console.error(err));
+);
+}
+// .then((response) => {
+    
+// if (response.choice === "Manager") {
+
+//     printInfo() {
+//         console.log(`The manager's name is ${this.name} `);
+//         console.log(`${this.name} has an ID number: ${this.id}`);
+//         console.log(`${this.name} has an email address at ${this.email}`)
+//     };
+
+//     // const Manager = new Manager(response.id, response.name, response.email, response.role);
+//     .then(() => 
+//     inquirer.prompt([{
+//         type: 'input',
+//         name: 'office',
+//         message: 'What is your office number?',
+//     },
+  
+// ]);
+    
+
+// }
+
+// else (const employees = [];)
+
+// });
+
+
+
+// .then(response) => {
+//     console.log(response);
+//     return``;
+//     .then(() => writeFileAsync("./dist/team.html", generateCard(answers)))
+//     .then(() => console.log('Succesfully wrote to team.html'))
+// //     .catch((err) => console.error(err));
+// }
+
+// }
+
 
 init();
 
