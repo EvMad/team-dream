@@ -66,11 +66,17 @@ let promptUser = () => {
     },
   
 ])
-}
+
+
+   
+};
+
+
 
 
 const generateCard = (answers) => {
     console.log(answers);
+    
     return`<!DOCTYPE html>
     <html lang="en">
       <head>
