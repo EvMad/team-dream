@@ -1,13 +1,15 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const jest = require("jest");
 const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const util = require("util");
+const { resolveTestEnvironment } = require("jest-resolve");
 const people = [];
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-let promptUser = () => {
+let promptManager = () => {
     console.log("Welcome manager, to the team builder!");
 
     
@@ -57,19 +59,41 @@ let promptUser = () => {
     {
         type: 'input',
         name: 'engEmail',
-        message: 'What is the email for your engineer?', 
+        message: 'What is the email address for your engineer?', 
     },
     {
         type: 'input',
         name: 'engId',
         message: 'What is the ID number for your engineer?',
     },
-  
+    {
+        type: 'input',
+        name: 'intName',
+        message: 'What is the first name of your intern?',
+    },
+    {
+        type: 'input',
+        name: 'intId',
+        message: 'What is the ID number for your intern?',
+    },
+    {
+        type: 'input',
+        name: 'intEmail',
+        message: 'What is the email address for your intern?', 
+    },
+  {
+    type: 'input',
+    name: 'intSchl',
+    message: 'What school does your intern attend?',
+  }
 ])
 
 
+//needs function to push answers to array
    
 };
+
+
 
 
 
@@ -128,16 +152,16 @@ const generateCard = (answers) => {
     
                   <div class="card col-3">
                     <div class="card-header bg-primary text-white">
-                      Name
+                      ${answers.intName}
                       <h5 class="card-title bg-primary text-white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sunglasses" viewBox="0 0 16 16">
                         <path d="M3 5a2 2 0 0 0-2 2v.5H.5a.5.5 0 0 0 0 1H1V9a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3 1 1 0 1 1 2 0 3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-.5h.5a.5.5 0 0 0 0-1H15V7a2 2 0 0 0-2-2h-2a2 2 0 0 0-1.888 1.338A1.99 1.99 0 0 0 8 6a1.99 1.99 0 0 0-1.112.338A2 2 0 0 0 5 5H3zm0 1h.941c.264 0 .348.356.112.474l-.457.228a2 2 0 0 0-.894.894l-.228.457C2.356 8.289 2 8.205 2 7.94V7a1 1 0 0 1 1-1z"/>
                       </svg>   Intern</h5>
                     </div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:</li>
-                            <li class="list-group-item">Email:<a href="#"></a></li>
-                            <li class="list-group-item justify-content-center"><a href="#" class="btn btn-primary">GitHub</a></li>
+                            <li class="list-group-item">ID:${answers.intId}</li>
+                            <li class="list-group-item">Email:<a href="#">${answers.intEmail}</a></li>
+                            <li class="list-group-item justify-content-center"><a href="#" class="btn btn-primary">School</a>${answers.intSchl}</li>
                         </ul>
                       </div>
                   </div>
@@ -188,14 +212,33 @@ const generateCard = (answers) => {
 
 
 const init = () => {
-    promptUser()
+    promptManager()
 .then((answers) => writeFileAsync("./dist/team.html", generateCard(answers)))
 .then(() => console.log('Succesfully wrote to team.html'))
 .catch((err) => console.error(err));
 
 }
 
+// let promptStaff() = () => {
+//     console.log("Ok let's add more staff");
+
+//     return inquirer.prompt([{
+//         {
+//             type: 'list',
+//             name: 'role',
+//             message: 'Choose a job title:',
+//             choices: ['Engineer', 'Intern'],
+//         },
+    
+
+//     }]);
+
+  
+// };
+
 init();
+
+
 
 
 // WHEN I start the application
