@@ -5,20 +5,18 @@ const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const util = require("util");
 const { resolveTestEnvironment } = require("jest-resolve");
+const Engineer = require("./lib/engineer");
 const people = [];
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
 let promptManager = () => {
     console.log("Welcome manager, to the team builder!");
-
-    
-
+ 
    return inquirer.prompt([{
         type: 'input',
         name: 'firstName',
         message: 'What is your first name?',
-
     },
     {
         type: 'input',
@@ -31,67 +29,92 @@ let promptManager = () => {
         message: 'What is your email address?',
     },
     {
-        type: 'list',
-        name: 'role',
-        message: 'Choose a job title:',
-        choices: ['Manager', 'Engineer', 'Intern'],
-    },
-    {
-        type: 'input',
-        name: 'git',
-        message: 'What is your GitHub user name?',
-    },
-    {
         type: 'input',
         name: 'office',
         message: 'What is your office number?',
-     },
-    {
-        type: 'input',
-        name: 'engineer',
-        message: 'What is the first name of your engineer?',
-    },
-    {
-        type: 'input',
-        name: 'engGit',
-        message: 'What is the GitHub user name of your engineer?',
-    },
-    {
-        type: 'input',
-        name: 'engEmail',
-        message: 'What is the email address for your engineer?', 
-    },
-    {
-        type: 'input',
-        name: 'engId',
-        message: 'What is the ID number for your engineer?',
-    },
-    {
-        type: 'input',
-        name: 'intName',
-        message: 'What is the first name of your intern?',
-    },
-    {
-        type: 'input',
-        name: 'intId',
-        message: 'What is the ID number for your intern?',
-    },
-    {
-        type: 'input',
-        name: 'intEmail',
-        message: 'What is the email address for your intern?', 
-    },
-  {
-    type: 'input',
-    name: 'intSchl',
-    message: 'What school does your intern attend?',
-  }
+    }
+ 
+//     {
+//         type: 'input',
+//         name: 'git',
+//         message: 'What is your GitHub user name?',
+//     },
+//    
+
+//     {
+//         type: 'input',
+//         name: 'intName',
+//         message: 'What is the first name of your intern?',
+//     },
+//     {
+//         type: 'input',
+//         name: 'intId',
+//         message: 'What is the ID number for your intern?',
+//     },
+//     {
+//         type: 'input',
+//         name: 'intEmail',
+//         message: 'What is the email address for your intern?', 
+//     },
+//   {
+//     type: 'input',
+//     name: 'intSchl',
+//     message: 'What school does your intern attend?',
+//   }
 ])
 
+.then(() => {let manager1 = new Manager(answers.name, answers.id, answers.email, answers.office);
+    people.push(manager1);
+    console.log(manager1);})
 
-//needs function to push answers to array
-   
-};
+    .then(() => {return inquirer.prompt([{
+
+        type: 'list',
+        name: 'role',
+        message: 'Choose a job title to enter new employee info:',
+        choices: ['Manager', 'Engineer', 'Intern'],
+    }]);
+
+    // .then(() => {if (answers.choice === "Engineer")
+
+    // return inquirer.prompt([{
+
+    //         {
+    //     type: 'input',
+    //     name: 'engineer',
+    //     message: 'What is the first name of your engineer?',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'engGit',
+    //     message: 'What is the GitHub user name of your engineer?',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'engEmail',
+    //     message: 'What is the email address for your engineer?', 
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'engId',
+    //     message: 'What is the ID number for your engineer?',
+    // },
+
+
+    // }]);
+
+    // .then(() => {let engineer1 = new Engineer(answers.engineer, answers.engId, answers.engEmail, answers.engGit)
+    // people.push(engineer1);
+    // console.log(engineer1);
+    // });
+
+    // });
+});
+   }
+
+;
+
+
 
 
 
@@ -101,7 +124,7 @@ let promptManager = () => {
 const generateCard = (answers) => {
     console.log(answers);
     
-    return`<!DOCTYPE html>
+    return `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -208,6 +231,8 @@ const generateCard = (answers) => {
 // }
 
 // }
+
+
 
 
 
