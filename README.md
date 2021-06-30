@@ -10,3 +10,4 @@ This application can be run completely from the command line upon installing Inq
 
 ### Screencast
 
+![screencast](teamDream.gif)
