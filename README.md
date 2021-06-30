@@ -2,7 +2,7 @@
 
 ## About
 
-This is a node.js application that utlizes the npm Inquirer to prompt the user and store information about employees. That information is then used to automatically generate html infocards (using Bootstrap,) complete with functioning links to the employee's email address and GitHub profile.
+This is a node.js application that utilizes the npm Inquirer to prompt the user and store information about employees. That information is then used to automatically generate html infocards (using Bootstrap,) complete with functioning links to the employee's email address and GitHub profile.
 
 ### Installation
 
