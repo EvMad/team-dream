@@ -6,6 +6,7 @@ const Manager = require("./lib/manager");
 const util = require("util");
 const { resolveTestEnvironment } = require("jest-resolve");
 const Engineer = require("./lib/engineer");
+const { choices } = require("yargs");
 const people = [];
 
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -32,54 +33,61 @@ let promptManager = () => {
         type: 'input',
         name: 'office',
         message: 'What is your office number?',
-    }
- 
-//     {
-//         type: 'input',
-//         name: 'git',
-//         message: 'What is your GitHub user name?',
-//     },
-//    
+    },
+    {       type: 'input',
+            name: 'engineer',
+            message: 'What is the first name of your engineer?',
+        },
+        {
+            type: 'input',
+            name: 'engGit',
+            message: 'What is the GitHub user name of your engineer?',
+        },
+        {
+            type: 'input',
+            name: 'engEmail',
+            message: 'What is the email address for your engineer?', 
+        },
+        {
+            type: 'input',
+            name: 'engId',
+            message: 'What is the ID number for your engineer?',
+        },
+        {
+            type: 'input',
+            name: 'intName',
+            message: 'What is the first name of your intern?',
+        },
+        {
+        type: 'input',
+        name: 'intId',
+        message: 'What is the ID number for your intern?',
+        },
+        {
+        type: 'input',
+        name: 'intEmail',
+        message: 'What is the email address for your intern?', 
+        },
+        {
+        type: 'input',
+        name: 'intSchl',
+        message: 'What school does your intern attend?',
+        }
 
-//     {
-//         type: 'input',
-//         name: 'intName',
-//         message: 'What is the first name of your intern?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'intId',
-//         message: 'What is the ID number for your intern?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'intEmail',
-//         message: 'What is the email address for your intern?', 
-//     },
-//   {
-//     type: 'input',
-//     name: 'intSchl',
-//     message: 'What school does your intern attend?',
-//   }
 ])
 
-.then(() => {let manager1 = new Manager(answers.name, answers.id, answers.email, answers.office);
-    people.push(manager1);
-    console.log(manager1);})
+};
 
-    .then(() => {return inquirer.prompt([{
 
-        type: 'list',
-        name: 'role',
-        message: 'Choose a job title to enter new employee info:',
-        choices: ['Manager', 'Engineer', 'Intern'],
-    }]);
+
+//--------------------------------------------------------------------------------
+
 
     // .then(() => {if (answers.choice === "Engineer")
 
     // return inquirer.prompt([{
 
-    //         {
+            
     //     type: 'input',
     //     name: 'engineer',
     //     message: 'What is the first name of your engineer?',
@@ -103,21 +111,14 @@ let promptManager = () => {
 
     // }]);
 
+    // );
+
     // .then(() => {let engineer1 = new Engineer(answers.engineer, answers.engId, answers.engEmail, answers.engGit)
     // people.push(engineer1);
     // console.log(engineer1);
     // });
 
     // });
-});
-   }
-
-;
-
-
-
-
-
 
 
 
@@ -193,48 +194,6 @@ const generateCard = (answers) => {
       </body>
       </html>`;}
    
-// .then((response) => {
-    
-// if (response.choice === "Manager") {
-
-//     printInfo() {
-//         console.log(`The manager's name is ${this.name} `);
-//         console.log(`${this.name} has an ID number: ${this.id}`);
-//         console.log(`${this.name} has an email address at ${this.email}`)
-//     };
-
-//     // const Manager = new Manager(response.id, response.name, response.email, response.role);
-//     .then(() => 
-//     inquirer.prompt([{
-//         type: 'input',
-//         name: 'office',
-//         message: 'What is your office number?',
-//     },
-  
-// ]);
-    
-
-// }
-
-// else (const employees = [];)
-
-// });
-
-
-
-// .then(response) => {
-//     console.log(response);
-//     return``;
-//     .then(() => writeFileAsync("./dist/team.html", generateCard(answers)))
-//     .then(() => console.log('Succesfully wrote to team.html'))
-// //     .catch((err) => console.error(err));
-// }
-
-// }
-
-
-
-
 
 const init = () => {
     promptManager()
@@ -244,27 +203,95 @@ const init = () => {
 
 }
 
-// let promptStaff() = () => {
-//     console.log("Ok let's add more staff");
+// const phaseTwo = () => {
+//     console.log("Now let's add some employees to your team.");
+
+//     let manager1 = new Employee('firstname', 'id', 'email');
+//     people.push(manager1);
+//     console.log(manager1);
 
 //     return inquirer.prompt([{
-//         {
 //             type: 'list',
-//             name: 'role',
+//             name: 'employeeSelect',
 //             message: 'Choose a job title:',
-//             choices: ['Engineer', 'Intern'],
-//         },
-    
+//             choices: ['Engineer', 'Intern']
+//     }])
 
-//     }]);
+//     .then(() => {if ((choice === "Engineer") {
+//     inquirer.prompt([{
+
+//             {
+//                 type: 'input',
+//                 name: 'engineer',
+//                 message: 'What is the first name of your engineer?',
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'engGit',
+//                 message: 'What is the GitHub user name of your engineer?',
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'engEmail',
+//                 message: 'What is the email address for your engineer?', 
+//             },
+//             {
+//                 type: 'input',
+//                 name: 'engId',
+//                 message: 'What is the ID number for your engineer?',
+//             },
+
+//     }])};
+
+
+//     )}
 
   
+
+// )
 // };
 
 init();
 
+// let Engineer1 = new Engineer(engGit, engineer, engId, engEmail);
+        // people.push(engineer1);
 
 
+// phaseTwo();
+
+
+
+//--------------------------------------
+
+//     {
+//         type: 'input',
+//         name: 'git',
+//         message: 'What is your GitHub user name?',
+//     },
+//    
+
+//     {
+//         type: 'input',
+//         name: 'intName',
+//         message: 'What is the first name of your intern?',
+//     },
+//     {
+//         type: 'input',
+//         name: 'intId',
+//         message: 'What is the ID number for your intern?',
+//     },
+//     {
+//         type: 'input',
+//         name: 'intEmail',
+//         message: 'What is the email address for your intern?', 
+//     },
+//   {
+//     type: 'input',
+//     name: 'intSchl',
+//     message: 'What school does your intern attend?',
+//   }
+
+//--------------------------------------------------------------------------------------------------------
 
 // WHEN I start the application
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
